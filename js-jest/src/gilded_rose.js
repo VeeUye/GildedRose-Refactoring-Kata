@@ -6,23 +6,27 @@ class Item {
   }
 }
 
+
+
 class Shop {
   constructor(items=[]){
     this.items = items;
+    this.maximumQuality = 50
+
   }
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].name !== 'Aged Brie' && this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
         this.itemCanDecreaseInQuality(this.items[i])
       } else {
-        if (this.items[i].quality < 50) {
+        if (this.items[i].quality < this.maximumQuality) {
           this.itemCanIncreaseInQuality(this.items[i])
           if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11 && this.items[i].quality < 50) {
+            if (this.items[i].sellIn < 11 && this.items[i].quality <  this.maximumQuality) {
               this.itemCanIncreaseInQuality(this.items[i])
 
             }
-            if (this.items[i].sellIn < 6 && this.items[i].quality < 50) {
+            if (this.items[i].sellIn < 6 && this.items[i].quality <  this.maximumQuality) {
               this.itemCanIncreaseInQuality(this.items[i])
             }
           }
@@ -44,7 +48,7 @@ class Shop {
           }
 
         } else {
-          if (this.items[i].quality < 50) {
+          if (this.items[i].quality <  this.maximumQuality) {
             this.itemCanIncreaseInQuality(this.items[i])
           }
         }
