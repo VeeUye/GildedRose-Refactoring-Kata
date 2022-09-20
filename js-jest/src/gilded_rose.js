@@ -10,8 +10,9 @@ class Item {
 
 class Shop {
   constructor(items=[]){
-    this.items = items;
+    this.items = items
     this.maximumQuality = 50
+    this.minimumQuality = 0
 
   }
   updateQuality() {
@@ -22,7 +23,7 @@ class Shop {
         if (this.items[i].quality < this.maximumQuality) {
           this.itemCanIncreaseInQuality(this.items[i])
           if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11 && this.items[i].quality <  this.maximumQuality) {
+            if (this.items[i].sellIn < 11 && this.items[i].quality < this.maximumQuality) {
               this.itemCanIncreaseInQuality(this.items[i])
 
             }
@@ -44,7 +45,7 @@ class Shop {
             this.itemCanDecreaseInQuality(this.items[i])
 
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            this.items[i].quality = this.minimumQuality
           }
 
         } else {
