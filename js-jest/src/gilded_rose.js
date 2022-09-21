@@ -54,10 +54,8 @@ class Shop {
           this.items[i].quality = this.minimumQuality
         }
 
-      } else {
-        if (this.itemCanIncreaseInQuality(this.items[i])) {
-          this.items[i].quality = this.items[i].quality + 1;
-        }
+      } else if (this.itemCanIncreaseInQuality(this.items[i])) {
+        this.items[i].quality = this.items[i].quality + 1;
       }
     }
 
