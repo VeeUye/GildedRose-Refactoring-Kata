@@ -29,16 +29,17 @@ class Shop {
         if (this.items[i].quality < this.maximumQuality) {
           this.itemCanIncreaseInQuality(this.items[i])
 
-          // backstage passes specific
 
-          if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].quality < this.maximumQuality) {
-            if (this.items[i].sellIn < 11) {
-              this.itemCanIncreaseInQuality(this.items[i])
 
-            }
-            if (this.items[i].sellIn < 6) {
-              this.itemCanIncreaseInQuality(this.items[i])
-            }
+
+        }
+        // backstage passes specific
+        if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].quality < this.maximumQuality) {
+          if (this.items[i].sellIn < 11) {
+            this.itemCanIncreaseInQuality(this.items[i])
+          }
+          if (this.items[i].sellIn < 6) {
+            this.itemCanIncreaseInQuality(this.items[i])
           }
         }
       }
