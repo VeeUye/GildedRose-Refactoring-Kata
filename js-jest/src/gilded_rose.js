@@ -20,26 +20,21 @@ class Shop {
 
       // if this item is a standard item
       if (this.items[i].name !== 'Aged Brie' && this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
-        this.itemCanDecreaseInQuality(this.items[i])
-
+        this.items[i].quality = this.items[i].quality - 1;
 
       } else {
 
         // if not at maximum quality, increase quality
         if (this.items[i].quality < this.maximumQuality) {
-          this.itemCanIncreaseInQuality(this.items[i])
-
-
-
-
+          this.items[i].quality = this.items[i].quality + 1;
         }
         // backstage passes specific
         if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].quality < this.maximumQuality) {
           if (this.items[i].sellIn < 11) {
-            this.itemCanIncreaseInQuality(this.items[i])
+            this.items[i].quality = this.items[i].quality + 1;
           }
           if (this.items[i].sellIn < 6) {
-            this.itemCanIncreaseInQuality(this.items[i])
+            this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
@@ -52,7 +47,7 @@ class Shop {
         if (this.items[i].name !== 'Aged Brie' && this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
 
           if (this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].quality > 0) {
-            this.itemCanDecreaseInQuality(this.items[i])
+            this.items[i].quality = this.items[i].quality - 1;
 
           } else {
             this.items[i].quality = this.minimumQuality
@@ -60,21 +55,13 @@ class Shop {
 
         } else {
           if (this.items[i].quality <  this.maximumQuality) {
-            this.itemCanIncreaseInQuality(this.items[i])
+            this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
     }
 
     return this.items;
-  }
-
-  itemCanDecreaseInQuality(item) {
-    item.quality = item.quality - 1;
-  }
-
-  itemCanIncreaseInQuality(item) {
-    item.quality = item.quality + 1;
   }
 }
 
