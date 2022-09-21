@@ -25,7 +25,7 @@ class Shop {
       } else {
 
         // if not at maximum quality, increase quality
-        if (this.items[i].quality < this.maximumQuality) {
+        if (this.itemCanIncreaseInQuality(this.items[i])) {
           this.items[i].quality = this.items[i].quality + 1;
         }
         // backstage passes specific
@@ -62,6 +62,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  itemCanIncreaseInQuality(item) {
+    return item.quality < this.maximumQuality
   }
 }
 
