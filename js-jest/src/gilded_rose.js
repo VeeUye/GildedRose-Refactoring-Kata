@@ -38,9 +38,12 @@ class Shop {
 
       }
 
-      if ('Sulfuras, Hand of Ragnaros' !== this.items[i].name) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
+
+      if ('Sulfuras, Hand of Ragnaros' === this.items[i].name) {
+        continue }
+
+      this.items[i].sellIn = this.items[i].sellIn - 1;
+     
 
       if (this.items[i].sellIn >= 0) {
         continue
