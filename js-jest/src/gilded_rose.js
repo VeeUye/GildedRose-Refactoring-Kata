@@ -18,6 +18,9 @@ class Shop {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
 
+      if ('Sulfuras, Hand of Ragnaros' === this.items[i].name) {
+        continue }
+
       if (this.itemCanDecreaseInQualityBeforeSellIn(this.items[i])) {
         this.items[i].quality = this.items[i].quality - 1;
 
@@ -34,16 +37,10 @@ class Shop {
 
           this.items[i].quality = this.items[i].quality + 1;
       }
-
-
       }
 
-
-      if ('Sulfuras, Hand of Ragnaros' === this.items[i].name) {
-        continue }
-
       this.items[i].sellIn = this.items[i].sellIn - 1;
-     
+
 
       if (this.items[i].sellIn >= 0) {
         continue
