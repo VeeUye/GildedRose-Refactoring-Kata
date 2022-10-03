@@ -35,7 +35,8 @@ class Shop {
           this.items[i].quality = this.items[i].quality + 1;
         }
       }
-      if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
+
+      if ('Sulfuras, Hand of Ragnaros' !== this.items[i].name) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
 
@@ -77,7 +78,4 @@ class Shop {
   }
 }
 
-module.exports = {
-  Item,
-  Shop
-}
+module.exports = {Item, Shop}
