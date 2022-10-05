@@ -54,7 +54,7 @@ class Shop {
       ) {
         if (
           this.items[i].name !== "Backstage passes to a TAFKAL80ETC concert" &&
-          this.items[i].quality > 0
+          this.itemCanDecreaseInQuality(this.items[i])
         ) {
           this.items[i].quality = this.items[i].quality - 1;
         } else {
@@ -68,6 +68,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  itemCanDecreaseInQuality(items) {
+    return items.quality > 0;
   }
 
   itemShouldHaveMinimumQualityAfterSellIn(item) {
