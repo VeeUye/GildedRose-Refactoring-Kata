@@ -48,6 +48,8 @@ class Shop {
         continue;
       }
 
+      this.updateQualityForAgedBrie(this.items[i]);
+
       if (
         this.items[i].name !== "Aged Brie" &&
         this.items[i].name !== "Sulfuras, Hand of Ragnaros"
@@ -61,16 +63,15 @@ class Shop {
           this.itemShouldHaveMinimumQualityAfterSellIn(this.items[i]);
         }
       }
-
-      if (
-        this.items[i].name === "Aged Brie" &&
-        this.itemCanIncreaseInQuality(this.items[i])
-      ) {
-        this.items[i].quality = this.items[i].quality + 1;
-      }
     }
 
     return this.items;
+  }
+
+  updateQualityForAgedBrie(item) {
+    if (item.name === "Aged Brie" && this.itemCanIncreaseInQuality(item)) {
+      item.quality = item.quality + 1;
+    }
   }
 
   itemCanDecreaseInQuality(items) {
