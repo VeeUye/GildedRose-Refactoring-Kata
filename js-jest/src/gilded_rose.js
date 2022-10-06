@@ -60,10 +60,13 @@ class Shop {
         } else {
           this.itemShouldHaveMinimumQualityAfterSellIn(this.items[i]);
         }
-      } else {
-        if (this.itemCanIncreaseInQuality(this.items[i])) {
-          this.items[i].quality = this.items[i].quality + 1;
-        }
+      }
+
+      if (
+        this.items[i].name === "Aged Brie" &&
+        this.itemCanIncreaseInQuality(this.items[i])
+      ) {
+        this.items[i].quality = this.items[i].quality + 1;
       }
     }
 
