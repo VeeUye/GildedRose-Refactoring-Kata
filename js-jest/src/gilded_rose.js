@@ -51,9 +51,7 @@ class Shop {
       this.updateQualityForAgedBrie(this.items[i]);
 
       if (
-        this.items[i].name !== "Aged Brie" &&
-        this.items[i].name !== "Sulfuras, Hand of Ragnaros" &&
-        this.items[i].name !== "Backstage passes to a TAFKAL80ETC concert" &&
+        this.itemCanDecreaseInQualityBeforeSellIn(this.items[i]) &&
         this.itemCanDecreaseInQuality(this.items[i])
       ) {
         this.items[i].quality = this.items[i].quality - 1;
