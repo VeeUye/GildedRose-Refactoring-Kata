@@ -37,11 +37,8 @@ class Shop {
 
       this.updateQualityForAgedBrie(this.items[i]);
 
-      if (
-        this.standardItem(this.items[i]) &&
-        this.itemCanDecreaseInQuality(this.items[i])
-      ) {
-        this.items[i].quality = this.items[i].quality - 1;
+      if (this.standardItem(this.items[i])) {
+        this.updateQualityMethodForStandardItem(this.items[i]);
       }
     }
 
@@ -49,10 +46,9 @@ class Shop {
   }
 
   updateQualityMethodForStandardItem(items) {
-    if (this.standardItem(items)) {
+    if (this.itemCanDecreaseInQuality(items)) {
       items.quality = items.quality - 1;
     }
-
     if (!this.itemCanDecreaseInQuality(items)) {
       this.itemShouldHaveMinimumQualityAfterSellIn(items);
     }
