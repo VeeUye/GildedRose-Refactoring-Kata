@@ -21,24 +21,25 @@ class Shop {
       if (this.itemCanDecreaseInQualityBeforeSellIn(this.items[i])) {
         this.items[i].quality = this.items[i].quality - 1;
       } else {
+        if (this.itemCanIncreaseInQuality(this.items[i])) {
+          this.items[i].quality = this.items[i].quality + 1;
+        }
+
         if (
           this.items[i].name === "Backstage passes to a TAFKAL80ETC concert"
         ) {
-          if (this.itemCanIncreaseInQuality(this.items[i])) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
           if (
             this.itemCanIncreaseInQuality(this.items[i]) &&
             this.items[i].sellIn <= 10
           ) {
             this.items[i].quality = this.items[i].quality + 1;
           }
-        }
-        if (
-          this.itemCanIncreaseInQuality(this.items[i]) &&
-          this.items[i].sellIn <= 5
-        ) {
-          this.items[i].quality = this.items[i].quality + 1;
+          if (
+            this.itemCanIncreaseInQuality(this.items[i]) &&
+            this.items[i].sellIn <= 5
+          ) {
+            this.items[i].quality = this.items[i].quality + 1;
+          }
         }
       }
 
