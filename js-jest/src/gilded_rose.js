@@ -26,11 +26,7 @@ class Shop {
       }
 
       if (this.standardItem(this.items[i])) {
-        this.items[i].quality = this.items[i].quality - 1;
-      }
-
-      if (!this.itemCanDecreaseInQuality(this.items[i])) {
-        this.itemShouldHaveMinimumQualityAfterSellIn(this.items[i]);
+        this.updateQualityMethodForStandardItem(this.items[i]);
       }
 
       this.items[i].sellIn = this.items[i].sellIn - 1;
@@ -50,6 +46,16 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  updateQualityMethodForStandardItem(items) {
+    if (this.standardItem(items)) {
+      items.quality = items.quality - 1;
+    }
+
+    if (!this.itemCanDecreaseInQuality(items)) {
+      this.itemShouldHaveMinimumQualityAfterSellIn(items);
+    }
   }
 
   updateQualityMethodForBackstagePasses(items) {
