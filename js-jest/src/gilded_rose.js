@@ -17,21 +17,7 @@ class Shop {
       if ("Sulfuras, Hand of Ragnaros" === this.items[i].name) {
         continue;
       }
-
-      if (this.items[i].name === "Backstage passes to a TAFKAL80ETC concert") {
-        if (
-          this.itemCanIncreaseInQuality(this.items[i]) &&
-          this.items[i].sellIn <= 10
-        ) {
-          this.items[i].quality = this.items[i].quality + 1;
-        }
-        if (
-          this.itemCanIncreaseInQuality(this.items[i]) &&
-          this.items[i].sellIn <= 5
-        ) {
-          this.items[i].quality = this.items[i].quality + 1;
-        }
-      }
+      this.updateQualityMethodForBackstagePasses(this.items[i]);
 
       if (this.itemCanDecreaseInQualityBeforeSellIn(this.items[i])) {
         this.items[i].quality = this.items[i].quality - 1;
@@ -67,6 +53,17 @@ class Shop {
     return this.items;
   }
 
+  updateQualityMethodForBackstagePasses(items) {
+    if (items.name === "Backstage passes to a TAFKAL80ETC concert") {
+      if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
+        items.quality = items.quality + 1;
+      }
+      if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 5) {
+        items.quality = items.quality + 1;
+      }
+    }
+  }
+
   updateQualityForAgedBrie(item) {
     if (item.name === "Aged Brie" && this.itemCanIncreaseInQuality(item)) {
       item.quality = item.quality + 1;
@@ -75,6 +72,10 @@ class Shop {
 
   itemCanDecreaseInQuality(items) {
     return items.quality > 0;
+  }
+
+  itemCannotDecreaseInQuality(items) {
+    return items.quality === this.minimumQuality;
   }
 
   itemShouldHaveMinimumQualityAfterSellIn(item) {
