@@ -17,14 +17,16 @@ class Shop {
       if ("Sulfuras, Hand of Ragnaros" === this.items[i].name) {
         continue;
       }
-      this.updateQualityMethodForBackstagePasses(this.items[i]);
+      if (this.items[i].name === "Backstage passes to a TAFKAL80ETC concert") {
+        this.updateQualityMethodForBackstagePasses(this.items[i]);
+      }
+
+      if (this.items[i].name === "Aged Brie") {
+        this.updateQualityForAgedBrie(this.items[i]);
+      }
 
       if (this.itemCanDecreaseInQualityBeforeSellIn(this.items[i])) {
         this.items[i].quality = this.items[i].quality - 1;
-      } else {
-        if (this.itemCanIncreaseInQuality(this.items[i])) {
-          this.items[i].quality = this.items[i].quality + 1;
-        }
       }
 
       this.items[i].sellIn = this.items[i].sellIn - 1;
@@ -55,6 +57,9 @@ class Shop {
 
   updateQualityMethodForBackstagePasses(items) {
     if (items.name === "Backstage passes to a TAFKAL80ETC concert") {
+      if (this.itemCanIncreaseInQuality(items)) {
+        items.quality = items.quality + 1;
+      }
       if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
         items.quality = items.quality + 1;
       }
