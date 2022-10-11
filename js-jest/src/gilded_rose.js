@@ -25,7 +25,7 @@ class Shop {
         this.updateQualityForAgedBrie(this.items[i]);
       }
 
-      if (this.itemCanDecreaseInQualityBeforeSellIn(this.items[i])) {
+      if (this.standardItem(this.items[i])) {
         this.items[i].quality = this.items[i].quality - 1;
       }
 
@@ -42,7 +42,7 @@ class Shop {
       this.updateQualityForAgedBrie(this.items[i]);
 
       if (
-        this.itemCanDecreaseInQualityBeforeSellIn(this.items[i]) &&
+        this.standardItem(this.items[i]) &&
         this.itemCanDecreaseInQuality(this.items[i])
       ) {
         this.items[i].quality = this.items[i].quality - 1;
@@ -87,7 +87,7 @@ class Shop {
     item.quality = this.minimumQuality;
   }
 
-  itemCanDecreaseInQualityBeforeSellIn(item) {
+  standardItem(item) {
     return (
       item.name !== "Aged Brie" &&
       item.name !== "Backstage passes to a TAFKAL80ETC concert" &&
