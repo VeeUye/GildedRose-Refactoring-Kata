@@ -58,8 +58,15 @@ class Shop {
       if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
         items.quality = items.quality + 1;
       }
-      if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 5) {
+      if (
+        this.itemCanIncreaseInQuality(items) &&
+        items.sellIn <= 5 &&
+        items.sellIn > 0
+      ) {
         items.quality = items.quality + 1;
+      }
+      if (items.sellIn <= 0) {
+        this.itemShouldHaveMinimumQualityAfterSellIn(items);
       }
     }
   }
@@ -72,10 +79,6 @@ class Shop {
 
   itemCanDecreaseInQuality(items) {
     return items.quality > 0;
-  }
-
-  itemCannotDecreaseInQuality(items) {
-    return items.quality === this.minimumQuality;
   }
 
   itemShouldHaveMinimumQualityAfterSellIn(item) {
