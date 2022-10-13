@@ -48,31 +48,32 @@ class Shop {
       this.itemCanDecreaseInQuality(items) &&
       this.itemIsStillWithinSellIn(items)
     ) {
-      items.quality = items.quality - 1;
+      this.degradeQuality(items);
     }
 
     if (
       this.itemCanDecreaseInQuality(items) &&
       !this.itemIsStillWithinSellIn(items)
     ) {
-      items.quality = items.quality - 2;
+      this.degradeQuality(items);
+      this.degradeQuality(items);
     }
   }
 
   updateQualityMethodForBackstagePasses(items) {
     if (items.name === "Backstage passes to a TAFKAL80ETC concert") {
       if (this.itemCanIncreaseInQuality(items)) {
-        items.quality = items.quality + 1;
+        this.increaseQuality(items);
       }
       if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
-        items.quality = items.quality + 1;
+        this.increaseQuality(items);
       }
       if (
         this.itemCanIncreaseInQuality(items) &&
         items.sellIn <= 5 &&
         items.sellIn > 0
       ) {
-        items.quality = items.quality + 1;
+        this.increaseQuality(items);
       }
       if (items.sellIn <= 0) {
         this.itemShouldHaveMinimumQualityAfterSellIn(items);
@@ -83,10 +84,10 @@ class Shop {
 
   updateQualityForAgedBrie(item) {
     if (this.itemCanIncreaseInQuality(item)) {
-      item.quality = item.quality + 1;
+      this.increaseQuality(item);
     }
     if (item.sellIn <= 0 && this.itemCanIncreaseInQuality(item)) {
-      item.quality = item.quality + 1;
+      this.increaseQuality(item);
     }
     this.decreaseSellIn(item);
   }
@@ -109,6 +110,14 @@ class Shop {
 
   itemCanIncreaseInQuality(item) {
     return item.quality < this.maximumQuality;
+  }
+
+  increaseQuality(items) {
+    items.quality = items.quality + 1;
+  }
+
+  degradeQuality(items) {
+    items.quality = items.quality - 1;
   }
 }
 
