@@ -29,7 +29,10 @@ class Shop {
         this.updateQualityMethodForStandardItem(this.items[i]);
       }
 
-      if (this.items[i].name !== "Aged Brie") {
+      if (
+        this.items[i].name !== "Aged Brie" &&
+        this.items[i].name !== "Backstage passes to a TAFKAL80ETC concert"
+      ) {
         this.decreaseSellIn(this.items[i]);
       }
 
@@ -80,6 +83,7 @@ class Shop {
       if (items.sellIn <= 0) {
         this.itemShouldHaveMinimumQualityAfterSellIn(items);
       }
+      this.decreaseSellIn(items);
     }
   }
 
