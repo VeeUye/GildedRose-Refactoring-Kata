@@ -29,13 +29,13 @@ class Shop {
         this.updateQualityMethodForStandardItem(this.items[i]);
       }
 
-      this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (this.items[i].name !== "Aged Brie") {
+        this.decreaseSellIn(this.items[i]);
+      }
 
       if (this.itemIsStillWithinSellIn(this.items[i])) {
         continue;
       }
-
-      this.updateQualityForAgedBrie(this.items[i]);
 
       if (this.standardItem(this.items[i])) {
         this.updateQualityMethodForStandardItem(this.items[i]);
@@ -43,6 +43,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  decreaseSellIn(items) {
+    items.sellIn = items.sellIn - 1;
   }
 
   itemIsStillWithinSellIn(items) {
@@ -80,10 +84,13 @@ class Shop {
   }
 
   updateQualityForAgedBrie(item) {
-    if (item.name === "Aged Brie" && this.itemCanIncreaseInQuality(item)) {
+    if (this.itemCanIncreaseInQuality(item)) {
       item.quality = item.quality + 1;
-      // item.sellIn = item.sellIn + 1;
     }
+    if (item.sellIn <= 0 && this.itemCanIncreaseInQuality(item)) {
+      item.quality = item.quality + 1;
+    }
+    this.decreaseSellIn(item);
   }
 
   itemCanDecreaseInQuality(items) {
