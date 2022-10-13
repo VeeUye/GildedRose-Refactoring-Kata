@@ -61,25 +61,23 @@ class Shop {
   }
 
   updateQualityMethodForBackstagePasses(items) {
-    if (items.name === "Backstage passes to a TAFKAL80ETC concert") {
-      if (this.itemCanIncreaseInQuality(items)) {
-        this.increaseQuality(items);
-      }
-      if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
-        this.increaseQuality(items);
-      }
-      if (
-        this.itemCanIncreaseInQuality(items) &&
-        items.sellIn <= 5 &&
-        items.sellIn > 0
-      ) {
-        this.increaseQuality(items);
-      }
-      if (items.sellIn <= 0) {
-        this.itemShouldHaveMinimumQualityAfterSellIn(items);
-      }
-      this.decreaseSellIn(items);
+    if (this.itemCanIncreaseInQuality(items)) {
+      this.increaseQuality(items);
     }
+    if (this.itemCanIncreaseInQuality(items) && items.sellIn <= 10) {
+      this.increaseQuality(items);
+    }
+    if (
+      this.itemCanIncreaseInQuality(items) &&
+      items.sellIn <= 5 &&
+      items.sellIn > 0
+    ) {
+      this.increaseQuality(items);
+    }
+    if (items.sellIn <= 0) {
+      this.itemShouldHaveMinimumQualityAfterSellIn(items);
+    }
+    this.decreaseSellIn(items);
   }
 
   updateQualityForAgedBrie(item) {
