@@ -92,14 +92,6 @@ class Shop {
     this.decreaseSellIn(item);
   }
 
-  itemCanDecreaseInQuality(items) {
-    return items.quality > 0;
-  }
-
-  itemShouldHaveMinimumQualityAfterSellIn(item) {
-    item.quality = this.minimumQuality;
-  }
-
   standardItem(item) {
     return (
       item.name !== "Aged Brie" &&
@@ -110,6 +102,14 @@ class Shop {
 
   itemCanIncreaseInQuality(item) {
     return item.quality < this.maximumQuality;
+  }
+
+  itemCanDecreaseInQuality(items) {
+    return items.quality > 0;
+  }
+
+  itemShouldHaveMinimumQualityAfterSellIn(item) {
+    item.quality = this.minimumQuality;
   }
 
   increaseQuality(items) {
