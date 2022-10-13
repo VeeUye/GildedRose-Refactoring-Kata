@@ -31,7 +31,7 @@ class Shop {
 
       this.items[i].sellIn = this.items[i].sellIn - 1;
 
-      if (this.items[i].sellIn >= 0) {
+      if (this.itemIsStillWithinSellIn(this.items[i])) {
         continue;
       }
 
@@ -43,6 +43,10 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  itemIsStillWithinSellIn(items) {
+    return items.sellIn >= 0;
   }
 
   updateQualityMethodForStandardItem(items) {
@@ -78,6 +82,7 @@ class Shop {
   updateQualityForAgedBrie(item) {
     if (item.name === "Aged Brie" && this.itemCanIncreaseInQuality(item)) {
       item.quality = item.quality + 1;
+      // item.sellIn = item.sellIn + 1;
     }
   }
 
